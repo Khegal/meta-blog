@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="flex py-8 gap-[118px] items-center text-center">
+    <div className="flex w-full py-8 gap-[118px] items-center text-center">
       <svg
         width="158"
         height="36"
@@ -58,7 +58,7 @@ const Header = () => {
         />
       </svg>
       <div className="flex gap-[21px]">
-        <div className="flex gap-5 items-center mx-[222.5px]">
+        <div className="flex gap-10 items-center mx-[222.5px]">
           <a href="" className="text-textColor">
             Home
           </a>
