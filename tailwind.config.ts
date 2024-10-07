@@ -26,6 +26,7 @@ const config: Config = {
         textGrayColor: "#97989F",
         textColor2: "#181A2A",
         bgColor: "#F6F6F7",
+        textColor4: "#141624",
       },
       fontFamily: {
         sans: ["Work Sans", "sans-serif"],

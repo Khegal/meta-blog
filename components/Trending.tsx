@@ -1,6 +1,6 @@
 const Trending = () => {
   return (
-    <div>
+    <div className="flex gap-[30px]">
       <p className="font-bold font-2xl leading-7">Trending</p>
     </div>
   );
