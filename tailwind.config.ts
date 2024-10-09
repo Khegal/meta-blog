@@ -7,9 +7,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      Inter: ["inter", "sans-serif"],
-    },
+    fontFamily: {},
     extend: {
       boxShadow: {
         custom: "0px 12px 24px -6px rgba(24, 26, 42, 0.12)",
