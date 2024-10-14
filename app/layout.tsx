@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/Home/Header";
+import Footer from "@/components/Home/Footer";
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 
@@ -23,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${workSans.className}`}>
-        <div className="bg-white flex flex-col gap-[100px]">
-          <div className="w-[1216px] h-full flex flex-col mx-auto gap-[100px]">
+        <div className="bg-white flex flex-col">
+          <div className="w-[1216px] h-full flex flex-col mx-auto ">
             <Header />
             {children}
           </div>

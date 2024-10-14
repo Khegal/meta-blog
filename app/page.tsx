@@ -1,6 +1,6 @@
-import Slider from "@/components/Slider";
-import Trending from "@/components/Trending";
-import BlogHome from "@/components/BlogHome";
+import Slider from "@/components/Home/Slider";
+import Trending from "@/components/Home/Trending";
+import BlogHome from "@/components/Home/BlogHome";
 
 export default function Home() {
   return (

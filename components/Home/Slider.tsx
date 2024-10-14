@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Slider = () => {
   return (
-    <div className="w-full flex flex-col gap-[11px]">
+    <div className="w-full flex flex-col gap-[11px] my-[100px]">
       <div className="relative">
         <Image
           alt="gg"

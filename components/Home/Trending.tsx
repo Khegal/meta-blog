@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Trending = () => {
   return (
-    <div className="flex gap-[30px] flex-col">
+    <div className="flex gap-[30px] flex-col mb-[100px]">
       <p className="font-bold text-2xl text-textColor2 leading-7">Trending</p>
       <div className="flex justify-between">
         <div className="w-[289px] rounded-xl overflow-hidden relative">

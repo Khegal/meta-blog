@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const BlogHome = () => {
   return (
-    <div className="flex flex-col gap-[100px]">
+    <div className="flex flex-col gap-[100px] mb-[100px]">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-8">
           <p className="font-bold text-2xl leading-7 text-textColor2">
