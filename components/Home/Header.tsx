@@ -58,13 +58,13 @@ const Header = () => {
         />
       </svg>
       <div className="flex gap-10 items-center">
-        <a href="" className="text-textColor">
+        <a href="/" className="text-textColor">
           Home
         </a>
-        <a href="" className="text-textColor">
+        <a href="/Blog" className="text-textColor">
           Blog
         </a>
-        <a href="" className="text-textColor">
+        <a href="/ContactUs" className="text-textColor">
           Contact
         </a>
       </div>
