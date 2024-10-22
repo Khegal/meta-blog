@@ -22,9 +22,15 @@ const Footer = () => {
           </div>
         </div>
         <div className="mx-[229.5px] flex flex-col gap-2">
-          <a href="/">Home</a>
-          <a href="/Blog">Blog</a>
-          <a href="/Contact">Contact</a>
+          <a href="/">
+            <p className="text-textColor">Home</p>
+          </a>
+          <a href="/">
+            <p className="text-textColor">Blog</p>
+          </a>
+          <a href="/">
+            <p className="text-textColor">Contact</p>
+          </a>
         </div>
         <div className="flex justify-between w-36">
           <svg
