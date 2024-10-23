@@ -27,7 +27,7 @@ const ContactUsForm = () => {
           </div>
           <input
             type="text"
-            className="w-full text-[#97989F] placeholder:text-[#97989F] py-[5.5px] pl-5 pr[50px] leading-[26px] border border-[#DCDDDF] rounded-[5px]"
+            className="w-full text-[#97989F] placeholder:text-[#97989F] py-[5.5px] pl-5 pr[50px] leading-[26px] border border-[#DCDDDF] rounded-[5px] h-[134px]"
             placeholder="Write a Message"
           />
         </div>

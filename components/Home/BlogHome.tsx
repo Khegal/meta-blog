@@ -1,6 +1,43 @@
-import Image from "next/image";
+"use client";
 
-const BlogHome = () => {
+import React, { useState, useEffect } from "react";
+import { BlogCardHome } from "./BlogCardHome";
+
+interface BlogResponse {
+  items: {
+    id: string;
+    title: string;
+    description: string;
+    content: string;
+    image: string;
+    categories: string[];
+    authorName: string;
+    authorImage: string;
+    createdAt: string;
+  }[];
+  pageInfo: {
+    totalPages: number;
+    totalElements: number;
+    page: number;
+    size: number;
+  };
+}
+
+const BlogHome: React.FC = () => {
+  const [blogs, setBlogs] = useState<BlogResponse["items"]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://next-mock-api.vercel.app/api/posts?size=9"
+      );
+      const data: BlogResponse = await response.json();
+      setBlogs(data.items);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex flex-col gap-[100px] mb-[100px]">
       <div className="flex flex-col gap-8">
@@ -33,195 +70,11 @@ const BlogHome = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-5">
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
+          {blogs.map((item) => (
+            <div key={item.id} className="mb-8">
+              <BlogCardHome post={item} />
             </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-            <Image
-              src={"/photo2.png"}
-              alt=""
-              width={360}
-              height={240}
-              className="h-auto object-contain rounded-md"
-            />
-            <div className="flex flex-col p-2 gap-5">
-              <div className="flex flex-col gap-4 items-start">
-                <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-                  Design
-                </p>
-                <h3 className="font-semibold text-2xl text-textColor2">
-                  The Impact of Technology on the Workplace: How Technology is
-                  Changing
-                </h3>
-              </div>
-              <p className="text-[#97989F]">August 20, 2022</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="flex justify-center">

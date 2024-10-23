@@ -1,61 +1,60 @@
-import Image from "next/image";
+"use client";
 
-const BlogCard = () => {
-  return (
-    <div className="grid grid-cols-3 gap-5">
-      <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
-        <Image
-          src={"/photo2.png"}
-          alt=""
-          width={360}
-          height={240}
-          className="h-auto object-contain rounded-md"
-        />
-        <div className="flex flex-col p-2 gap-5">
-          <div className="flex flex-col gap-4 items-start">
-            <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-              Design
-            </p>
-            <h3 className="font-semibold text-2xl text-textColor2">
-              The Impact of Technology on the Workplace: How Technology is
-              Changing
-            </h3>
-          </div>
-          <div className="flex gap-5 text-center items-center">
-            <div className="flex gap-3">
-              <Image
-                src={"/pfp.jpg"}
-                width={36}
-                height={36}
-                alt=""
-                className="rounded-full"
-              />
-              <p className="text-[#97989F] flex text-center items-center font-medium">
-                Eric Smith
-              </p>
-            </div>
-            <p className="text-[#97989F]">August 20, 2022</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import React, { useState, useEffect } from "react";
+import { BlogCard } from "./BlogCard";
 
-const BlogListing = () => {
+interface BlogResponse {
+  items: {
+    id: string;
+    title: string;
+    description: string;
+    content: string;
+    image: string;
+    categories: string[];
+    authorName: string;
+    authorImage: string;
+    createdAt: string;
+  }[];
+  pageInfo: {
+    totalPages: number;
+    totalElements: number;
+    page: number;
+    size: number;
+  };
+}
+
+export const BlogListing: React.FC = () => {
+  const [blogs, setBlogs] = useState<BlogResponse["items"]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://next-mock-api.vercel.app/api/posts?size=9"
+      );
+      const data: BlogResponse = await response.json();
+      setBlogs(data.items);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <section className="mt-12">
+    <section className="mt-12 flex flex-col justify-center ">
       <h2 className="font-bold text-2xl leading-7 text-textColor2 mb-12">
-        All Blog Post
+        All Blog Posts
       </h2>
-      <div className="flex justify-center flex-col w-full items-center">
-        <BlogCard />
-        <button className="border-[#696A754D] justify-center border py-3 px-5 font-medium rounded-md text-[#696A75] mt-8 mb-20 flex">
+      <div className="grid grid-cols-3 gap-5">
+        {blogs.map((item) => (
+          <div key={item.id} className="">
+            <BlogCard post={item} />
+          </div>
+        ))}
+      </div>
+      <div className="items-center flex justify-center">
+        <button className="border-[#696A754D] justify-center border py-3 px-5 font-medium rounded-md text-[#696A75] mt-8 mb-20 inline-flex">
           Load More
         </button>
       </div>
     </section>
   );
 };
-
-export default BlogListing;
