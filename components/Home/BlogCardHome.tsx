@@ -15,9 +15,16 @@ export const BlogCardHome = ({ post }) => {
       />
       <div className="flex flex-col p-2 gap-5">
         <div className="flex flex-col gap-4 items-start">
-          <p className="rounded-md text-sm font-medium bg-[#4B6BFB0D] text-[#4B6BFB] inline-flex px-2.5 py-1">
-            Design
-          </p>
+          <div className="flex gap-4">
+            {post.categories.map((category) => (
+              <div
+                key={category}
+                className="bg-[#4B6BFB]/5 py-1 px-2.5 inline-block text-[#4B6BFB] text-xs leading-5 rounded-md font-medium"
+              >
+                {category}
+              </div>
+            ))}
+          </div>
           <h3 className="font-semibold text-2xl text-textColor2 leading-7">
             {post.title}
           </h3>

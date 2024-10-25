@@ -26,8 +26,7 @@ export const BlogCard = ({ post }) => {
             ))}
           </div>
           <h3 className="font-semibold text-2xl text-textColor2 leading-7">
-            The Impact of Technology on the Workplace: How Technology is
-            Changing
+            {post.title}
           </h3>
         </div>
         <div className="flex gap-5 text-center items-center">
