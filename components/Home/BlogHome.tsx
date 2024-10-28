@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { BlogCardHome } from "./BlogCardHome";
 
@@ -25,6 +26,7 @@ interface BlogResponse {
 
 const BlogHome: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogResponse["items"]>([]);
+  const [categoriesData, setCategoriesData] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +37,16 @@ const BlogHome: React.FC = () => {
       setBlogs(data.items);
     };
 
+    const fetchCategories = async () => {
+      const categoriesResponse = await fetch(
+        "https://next-mock-api.vercel.app/api/posts/categories"
+      );
+      const categoriesData = await categoriesResponse.json();
+      setCategoriesData(categoriesData);
+    };
+
     fetchData();
+    fetchCategories();
   }, []);
 
   return (
@@ -45,28 +56,19 @@ const BlogHome: React.FC = () => {
           <p className="font-bold text-2xl leading-7 text-textColor2">
             All Blog Post
           </p>
-          <div className="w-full flex gap-5 ltr">
-            <p className="text-[#D4A373] font-bold text-xs leading-[25px]">
+          <div className="flex gap-5">
+            <Link href={"/blog"} className="text-xs font-bold text-[#D4A373]">
               All
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px]">
-              Design
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px]">
-              Travel
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px]">
-              Fashion
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px]">
-              Technology
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px]">
-              Branding
-            </p>
-            <p className="text-[#495057] font-bold text-xs leading-[25px] ms-auto">
-              View All
-            </p>
+            </Link>
+            {categoriesData.map((category, index) => (
+              <Link
+                key={index}
+                href={"/Category/" + category}
+                className="text-xs font-bold text-[#495057]"
+              >
+                {category}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="grid grid-cols-3 gap-5">

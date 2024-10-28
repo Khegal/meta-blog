@@ -68,15 +68,14 @@ const Header = () => {
           Contact
         </a>
       </div>
-      <form action="" className="relative bg-none border-none">
+      <form action={"/Blog"} className="relative">
         <input
           type="text"
-          className="bg-inputColor rounded-[5px] font-Inter text-sm font-normal pl-4 py-2 w-[166px] pr-9"
-          name=""
-          id=""
           placeholder="Search"
+          name="q"
+          className="bg-[#F4F4F5] w-40 h-9 pl-4 pr-9 rounded-md"
         />
-        <button className="absolute top-[10px] right-[10px]">
+        <button className="absolute top-0 right-0 flex items-center justify-center h-9 w-9">
           <svg
             width="16"
             height="16"
@@ -91,7 +90,7 @@ const Header = () => {
               strokeMiterlimit="10"
             />
             <path
-              d="M10.5718 10.5716L14.0002 14"
+              d="M10.5715 10.5716L14 14"
               stroke="#52525B"
               strokeWidth="1.5"
               strokeMiterlimit="10"

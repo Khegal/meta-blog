@@ -1,11 +1,12 @@
-"use client";
-
 import Image from "next/image";
 import dayjs from "dayjs";
 
 export const BlogCard = ({ post }) => {
   return (
-    <div className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl">
+    <a
+      href={`/Blog/${post.id}`}
+      className="flex flex-col p-4 gap-4 border-borderColor2 border rounded-xl"
+    >
       <Image
         src={post.image}
         alt={post.authorName}
@@ -47,6 +48,6 @@ export const BlogCard = ({ post }) => {
           </p>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
