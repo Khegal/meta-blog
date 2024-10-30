@@ -1,5 +1,5 @@
-import Header from "@/components/Home/Header";
-import Footer from "@/components/Home/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 
