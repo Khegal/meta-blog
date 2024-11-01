@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { BlogCardHome } from "./BlogCardHome";
 
 interface BlogResponse {
@@ -27,13 +28,24 @@ interface BlogResponse {
 const BlogHome: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogResponse["items"]>([]);
   const [categoriesData, setCategoriesData] = useState<string[]>([]);
+  const [pageInfo, setPageInfo] = useState<BlogResponse["pageInfo"] | null>(
+    null
+  );
 
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Get the current page from the search parameters
+  const page = searchParams.get("page") || "1";
+
+  // Fetch data based on the page query parameter
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://next-mock-api.vercel.app/api/posts?size=9"
+        `https://next-mock-api.vercel.app/api/posts?size=9&page=${page}`
       );
       const data: BlogResponse = await response.json();
+      setPageInfo(data.pageInfo);
       setBlogs(data.items);
     };
 
@@ -47,7 +59,14 @@ const BlogHome: React.FC = () => {
 
     fetchData();
     fetchCategories();
-  }, []);
+  }, [page]); // Dependency on the page query parameter
+
+  // Handle page change and update the search parameters in the URL
+  const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", newPage.toString());
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <div className="flex flex-col gap-[100px] mb-[100px]">
@@ -73,16 +92,36 @@ const BlogHome: React.FC = () => {
         </div>
         <div className="grid grid-cols-3 gap-5">
           {blogs.map((item) => (
-            <div key={item.id} className="mb-8">
+            <Link key={item.id} className="block" href={`/Blog/${item.id}`}>
               <BlogCardHome post={item} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
       <div className="flex justify-center">
-        <button className="border-[#696A754D] flex justify-center border py-3 px-5 font-medium rounded-md text-[#696A75]">
-          Load More
-        </button>
+        {pageInfo && (
+          <nav
+            aria-label="Page navigation example"
+            className="flex justify-center my-10"
+          >
+            <ul className="inline-flex -space-x-px text-sm">
+              {Array.from({ length: pageInfo.totalPages }).map((_, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`flex items-center justify-center px-3 h-8 leading-tight ${
+                      index + 1 === parseInt(page)
+                        ? "text-blue-600 bg-blue-50"
+                        : "text-gray-500 bg-white"
+                    } border border-gray-300 hover:bg-gray-100 hover:text-gray-700`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
     </div>
   );

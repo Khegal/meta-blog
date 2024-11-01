@@ -1,4 +1,11 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 const Header = () => {
+  const pathname = usePathname();
+  const isSpecificLinkActive = (path) => pathname === path;
+
   return (
     <div className="flex w-full py-8 items-center text-center justify-between">
       <svg
@@ -58,13 +65,28 @@ const Header = () => {
         />
       </svg>
       <div className="flex gap-10 items-center">
-        <a href="/" className="text-textColor">
+        <a
+          href="/"
+          className={`text-textColor ${
+            isSpecificLinkActive("/") ? "font-bold" : ""
+          }`}
+        >
           Home
         </a>
-        <a href="/Blog" className="text-textColor">
+        <a
+          href="/Blog"
+          className={`text-textColor ${
+            isSpecificLinkActive("/Blog") ? "font-bold" : ""
+          }`}
+        >
           Blog
         </a>
-        <a href="/ContactUs" className="text-textColor">
+        <a
+          href="/ContactUs"
+          className={`text-textColor ${
+            isSpecificLinkActive("/Contact") ? "font-bold" : ""
+          }`}
+        >
           Contact
         </a>
       </div>

@@ -25,7 +25,7 @@ export const BlogCardHome = ({ post }) => {
               </div>
             ))}
           </div>
-          <h3 className="font-semibold text-2xl text-textColor2 leading-7">
+          <h3 className="font-semibold text-2xl text-textColor2 leading-7 h-[84px]">
             {post.title}
           </h3>
         </div>
